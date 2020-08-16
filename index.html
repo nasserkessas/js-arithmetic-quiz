@@ -2,16 +2,34 @@
 <html>
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Lato&display=swap" rel="stylesheet">
     <meta charSet="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Page Title</title>
+    <title>Brain age</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='style.css'>
 </head>
 
 <body>
-    <div class="game">
+    <section id="form" class="form">
+        <p class="instruction">Please select your difficulty</p>
+        <ul>
+            <li class="difficulty"><input type="radio" value="easy" class="difficultyinput" name="difficulty" id="easy">
+                <label class="label" for="easy">Easy<span class="questioncount">5 questions</span></label>
+            </li>
+            <li class="difficulty"><input type="radio" value="medium" class="difficultyinput" name="difficulty"
+                    id="medium">
+                <label class="label" for="medium">Medium<span class="questioncount">10 questions</span></label>
+            </li>
+            <li class="difficulty"><input type="radio" value="hard" class="difficultyinput" name="difficulty" id="hard">
+                <label class="label" for="hard">Hard<span class="questioncount">20 questions</span></label>
+            </li>
+        </ul>
+        <button onclick="submit()" type="submit" class="submit">START</button>
+    </section>
+
+    <section id="game" class="game">
         <div id="next" class="question">
             <div class="questionPart" id="firstnumber1"></div>
             <div class="questionPart" id="operator1"></div>
@@ -31,8 +49,17 @@
             <div class="questionPart" id="secondnumber3"></div>
             <div class="questionPart" id="equals3"></div>
             <div class="questionPart" id="previousanswer"></div>
+            <img class="image" id="tick" src="checkmark.svg" alt="correct">
+            <img class="image" id="cross" src="cross.svg" alt="incorrect">
         </div>
-    </div>
+    </section>
+
+    <section class="alertbox" id="alertbox">
+        <div id="alerttext" class="alerttext">You completed <span id="mode" class="number"></span> mode and got <span
+                id="correct" class="number"></span> question(s) correct and <span id="incorrect" class="number"></span>
+            question(s) incorrect in <span id="time" class="number"></span> seconds</div>
+        <button onclick="refresh()" class="alertbutton">RESTART</button>
+    </section>
 
     <script src="main.js"></script>
 </body>

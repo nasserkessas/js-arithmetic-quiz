@@ -1,6 +1,22 @@
+function submit() {
+    mode = document.querySelector('input[name = "difficulty"]:checked').value;
+    if (mode === "easy") {
+        count = 5;
+    }
+    if (mode === "medium") {
+        count = 10;
+    }
+    if (mode === "hard") {
+        count = 20;
+    }
+    document.getElementById("form").style.display = "none";
+    document.getElementById("game").style.display = "flex";
+    main();
+}
+
 function getQuestions() {
     let operators = ["+", "-", "x"];
-    let maxNumber
+    let maxNumber;
 
     for (let i = 0; i < count; i++) {
         operator = operators[Math.floor(Math.random() * operators.length)];
@@ -16,7 +32,8 @@ function getQuestions() {
         ];
 
         let firstNumber = numbers[0] >= numbers[1] ? numbers[0] : numbers[1];
-        let secondNumber = numbers[0] <= numbers[1] ? numbers[0] : numbers[1]; let answer = 0
+        let secondNumber = numbers[0] <= numbers[1] ? numbers[0] : numbers[1];
+        let answer = 0;
         switch (operator) {
             case "x":
                 answer = firstNumber * secondNumber;
@@ -33,7 +50,7 @@ function getQuestions() {
             operator,
             secondNumber,
             answer
-        })
+        });
 
     }
 }
@@ -47,11 +64,11 @@ function next() {
 
 function set(id, value) {
     let elem = document.getElementById(id);
-    if (!elem) return
+    if (!elem) return;
     if (elem.value === undefined)
-        elem.innerHTML = value
+        elem.innerHTML = value;
     else
-        elem.value = value
+        elem.value = value;
 }
 
 function get(id) {
@@ -71,51 +88,62 @@ function fill(number, obj) {
         set("secondnumber" + number, obj.secondNumber);
         set("equals" + number, "=");
     } else {
-        set("firstnumber" + number, "")
-        set("operator" + number, "")
-        set("secondnumber" + number, "")
-        set("equals" + number, "")
+        set("firstnumber" + number, "");
+        set("operator" + number, "");
+        set("secondnumber" + number, "");
+        set("equals" + number, "");
     }
 }
 
 function play() {
-    fill("1", questions[question + 1])
-    fill("2", questions[question])
-    fill("3", questions[question - 1])
+    fill("1", questions[question + 1]);
+    fill("2", questions[question]);
+    fill("3", questions[question - 1]);
 
     if (question !== count) {
         set("previousanswer", get("currentbox"));
     } else {
-        disable("currentbox")
+        disable("currentbox");
     }
 
     set("currentbox", "")
 
     if (question === count) {
-        finishtime = new Date
-        finishtime = finishtime.getTime()
-        totaltime = Math.round(((finishtime - starttime) + Number.EPSILON)) / 1000
-        alert(`you got ${correct} correct and ${incorrect} incorrect in ${totaltime} seconds`);
+        finishtime = new Date;
+        finishtime = finishtime.getTime();
+        let millitotaltime = (finishtime - starttime) / 1000;
+        let totaltime = parseFloat(millitotaltime).toFixed(2);
+        document.getElementById("game").style.display = "none";
+        document.getElementById("alertbox").style.display = "block";
+        set("mode", mode);
+        set("correct", correct);
+        set("incorrect", incorrect);
+        set("time", totaltime);
     }
 
+}
+
+function refresh() {
+    location = location
 }
 
 function check() {
     if (parseInt(get("currentbox")) === questions[question].answer) {
         correct++;
+        document.getElementById("tick").style.display = "inline";
+        document.getElementById("cross").style.display = "none";
     }
     else {
         incorrect++;
+        document.getElementById("cross").style.display = "inline";
+        document.getElementById("tick").style.display = "none";
     }
 }
 
 function main() {
-
     document.getElementById("currentbox").focus();
-
-    starttime = new Date
-    starttime = starttime.getTime()
-    
+    starttime = new Date;
+    starttime = starttime.getTime();
     getQuestions();
     play();
     document.getElementById("currentbox")
@@ -127,11 +155,9 @@ function main() {
             }
         })
 }
-
 let questions = [];
 let question = 0;
-let count = 10;
-let correct = 0
-let incorrect = 0
-
-main()
+let correct = 0;
+let incorrect = 0;
+let count = 0;
+let mode = "";
