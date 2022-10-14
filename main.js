@@ -114,11 +114,15 @@ function play() {
         let millitotaltime = (finishtime - starttime) / 1000;
         let totaltime = parseFloat(millitotaltime).toFixed(2);
         document.getElementById("game").style.display = "none";
-        document.getElementById("alertbox").style.display = "block";
-        set("mode", mode);
-        set("correct", correct);
-        set("incorrect", incorrect);
-        set("time", totaltime);
+        popup(`    You completed <span class="number">${mode}</span> mode and got <span
+        class="number">${correct}</span> question(s) correct and <span class="number">${incorrect}</span>
+    question(s) incorrect in <span class="number">${totaltime}</span> seconds`, [
+            {
+                text: "RESTART",
+                action: "refresh",
+                class: "alertbutton"
+            }
+        ])
     }
 
 }
