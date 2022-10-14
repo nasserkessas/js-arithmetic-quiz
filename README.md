@@ -13,6 +13,6 @@ A simple web-based basic operations math quiz with different difficulty levels.
 Created by Nasser Kessas
 
 ## Contributing
-PRs accepted, feel free to dive in! [Open an issue](https://github.com/nasserkessas/js-snake/issues/new) or submit PRs.
+PRs accepted, feel free to dive in! [Open an issue](https://github.com/nasserkessas/js-arithmetic-quiz/issues/new) or submit PRs.
 
 Js Arithmetic Quiz follows the [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/) Code of Conduct.
