@@ -1,4 +1,5 @@
 # Math quiz
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1faec371-4797-498b-b4c9-430a195fa79c/deploy-status)](https://app.netlify.com/sites/math-quiz-nk/deploys)
 
 ## Overview
 A simple web-based basic operations math quiz with different difficulty levels.
