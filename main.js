@@ -1,12 +1,12 @@
 function submit() {
     mode = document.querySelector('input[name = "difficulty"]:checked').value;
-    if (mode === "easy") {
+    if (mode === "short") {
         count = 5;
     }
     if (mode === "medium") {
         count = 10;
     }
-    if (mode === "hard") {
+    if (mode === "long") {
         count = 20;
     }
     document.getElementById("form").style.display = "none";
@@ -15,7 +15,7 @@ function submit() {
 }
 
 function getQuestions() {
-    let operators = ["+", "-", "x"];
+    let operators = ["+", "-", "x", "x", "x"];
     let maxNumber;
 
     for (let i = 0; i < count; i++) {
